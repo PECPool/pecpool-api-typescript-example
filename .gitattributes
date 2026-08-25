@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+*.ts text diff=typescript
+*.md text
+*.json text
+
+*.zip binary

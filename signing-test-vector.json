@@ -1,0 +1,14 @@
+{
+  "description": "Synthetic HMAC test data. These values are not PECPool credentials.",
+  "method": "GET",
+  "path": "/v1/snapshot",
+  "queryString": "hours=24&includeCharts=true&earningsPageSize=100&payoutsPageSize=100",
+  "timestamp": "1780000000",
+  "nonce": "8f3c1f0e9d4a4a0c9b2a1f7d6e5c4b3a",
+  "body": "",
+  "bodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "fixtureApiKey": "fixture_key_not_a_real_credential",
+  "fixtureApiSecret": "test-secret",
+  "canonicalString": "GET\n/v1/snapshot\nhours=24&includeCharts=true&earningsPageSize=100&payoutsPageSize=100\n1780000000\n8f3c1f0e9d4a4a0c9b2a1f7d6e5c4b3a\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "signature": "7fbe58a4ac76d7f17cd289449665cf0f2ba9b3745a106b5672c3bd96f0db95a2"
+}

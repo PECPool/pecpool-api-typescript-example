@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0",
+  "schemaNote": "Repository-local metadata; not an external standard or PECPool API response schema.",
+  "name": "PECPool API TypeScript / Node.js Example",
+  "repository": "https://github.com/PECPool/pecpool-api-typescript-example",
+  "description": "Official PECPool TypeScript/Node.js API example with HMAC-SHA256 signing, typed endpoints, secure configuration, and tests.",
+  "language": "TypeScript",
+  "typescriptVersion": "7.0.2",
+  "runtime": "Node.js",
+  "minimumRuntime": "22.0.0",
+  "moduleFormat": "ESM",
+  "license": "MIT",
+  "api": {
+    "baseUrl": "https://api.pecpool.com",
+    "version": "v1",
+    "mode": "read-only",
+    "authentication": "HMAC-SHA256",
+    "documentation": "https://api.pecpool.com/index.html",
+    "openapi": "https://api.pecpool.com/pecpoolapi/v1/pecpoolapi.json",
+    "rateLimit": "One request every 10 seconds per Farm Key"
+  },
+  "entrypoints": {
+    "exports": "index.ts",
+    "client": "PECPoolApiClient.ts",
+    "cli": "example.ts",
+    "tests": "tests.ts"
+  },
+  "commands": {
+    "install": "npm ci",
+    "build": "npm run build",
+    "typecheck": "npm run typecheck",
+    "test": "npm test",
+    "check": "npm run check"
+  },
+  "security": {
+    "serverSideOnly": true,
+    "runtimeDependencies": 0,
+    "tlsVerification": true,
+    "redirectsRejected": true,
+    "credentialsFromEnvironment": true,
+    "automaticRetries": false,
+    "offlineTests": true
+  },
+  "lastVerified": "2026-08-25"
+}

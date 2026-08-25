@@ -1,0 +1,50 @@
+{
+  "name": "pecpool-api-typescript-example",
+  "version": "1.0.0",
+  "description": "Official PECPool TypeScript/Node.js API example with HMAC-SHA256 signing, typed endpoints, secure configuration, and tests.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://api.pecpool.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PECPool/pecpool-api-typescript-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PECPool/pecpool-api-typescript-example/issues"
+  },
+  "keywords": [
+    "pecpool",
+    "typescript",
+    "nodejs",
+    "bitcoin",
+    "mining",
+    "api",
+    "hmac"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run build",
+    "test": "node --test dist/tests.js",
+    "precli": "npm run build",
+    "cli": "node dist/example.js",
+    "check": "npm run typecheck && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,89 @@
+# PECPool API TypeScript / Node.js Example
+
+> Official Node.js 22+ TypeScript reference for securely calling the read-only PECPool API v1 with typed HMAC-SHA256 authentication.
+
+Canonical project identity
+- Repository: https://github.com/PECPool/pecpool-api-typescript-example
+- Official website: https://pecpool.com/
+- API base: https://api.pecpool.com
+- API documentation: https://api.pecpool.com/index.html
+- Canonical OpenAPI: https://api.pecpool.com/pecpoolapi/v1/pecpoolapi.json
+- Language: TypeScript 7
+- Runtime: server-side Node.js 22+
+- Module format: ESM
+- License: MIT for the repository example code
+- Last public-contract verification: 2026-08-25
+
+Scope
+- Server-side and CLI connection example.
+- Public read-only API only.
+- No browser SDK, PECPool backend source, database schema, infrastructure detail, write operation, credential, or real customer data.
+
+Authentication
+- Required headers: X-PECPool-Key, X-PECPool-Timestamp, X-PECPool-Nonce, X-PECPool-Signature.
+- Canonical string: METHOD\nPATH\nQUERY_STRING\nTIMESTAMP\nNONCE\nBODY_SHA256.
+- METHOD is uppercase.
+- PATH is the final encoded path without scheme or hostname.
+- QUERY_STRING exactly matches the URL query without the leading question mark, including order and encoding.
+- TIMESTAMP is Unix UTC seconds.
+- NONCE is unique, 8–128 characters; this project uses 32 lowercase hex characters.
+- Current GET body hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.
+- Signature: lowercase hexadecimal HMAC-SHA256 using the API Secret as key.
+- The Secret is never transmitted.
+
+Public endpoints
+- GET /v1/ping
+- GET /v1/farm
+- GET /v1/monitor
+- GET /v1/accounts
+- GET /v1/accounts/{account}/summary
+- GET /v1/accounts/{account}/monitor
+- GET /v1/accounts/{account}/workers
+- GET /v1/accounts/{account}/miners
+- GET /v1/accounts/{account}/earnings
+- GET /v1/accounts/{account}/payouts
+- GET /v1/accounts/{account}/charts/hashrate
+- GET /v1/accounts/{account}/workers/{worker}/charts/hashrate
+- GET /v1/accounts/{account}/miners/{minerKey}/charts/hashrate
+- GET /v1/snapshot
+
+Rate limit
+- One request every 10 seconds per Farm Key.
+- HTTP 429 provides a retry delay.
+- A retry must use a new timestamp, nonce, canonical request, and signature.
+- The example does not retry automatically.
+
+Primary files
+- PECPoolApiClient.ts: typed endpoints and built-in fetch transport.
+- PECPoolSigner.ts: RFC 3986 encoding and HMAC authentication.
+- PECPoolApiError.ts: safe structured errors.
+- PECPoolTypes.ts: optional public OpenAPI response types.
+- index.ts: public exports.
+- example.ts: one-request-per-run CLI.
+- tests.ts: deterministic mocked tests with no live API calls.
+- signing-test-vector.json: synthetic cross-language HMAC fixture.
+- README.md and API.md: human integration documentation.
+- AGENTS.md: coding-agent maintenance constraints.
+
+Commands
+- npm ci
+- npm run cli -- help
+- npm run cli -- ping
+- npm run cli -- snapshot
+- npm run cli -- account-summary ACCOUNT
+- npm run build
+- npm run typecheck
+- npm test
+- npm run check
+
+Security invariants
+- Never bundle credentials into browser or mobile code.
+- Never place credentials in CLI arguments.
+- Never log authentication material or private PECPool data.
+- Keep TLS verification enabled and redirects rejected.
+- Build the ordered query once; sign and send the identical encoded bytes.
+- Encode each path segment exactly once.
+- Use only documented endpoints and public response fields.
+- Keep tests synthetic, mocked, and offline.
+
+For current field definitions and limits, consult the canonical OpenAPI document instead of guessing.
